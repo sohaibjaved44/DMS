@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DMS.Models.ROLE_TBL>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2>Roles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Role Id
+        </th>
+        <th>
+            Role Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROLE_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROLE_NME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ROLE_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ROLE_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ROLE_ID })
+        </td>
+    </tr>
+}
+
+</table>

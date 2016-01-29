@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DMS.Models.PLAN_TBL>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Plan Data</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Plan_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plan_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plan_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plan_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Plan_id  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.Plan_id  }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.Plan_id  })
+        </td>
+    </tr>
+}
+
+</table>

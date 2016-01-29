@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DMS.Models.PLCY_TBL>
+
+@{
+    ViewBag.Title = "Policy";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="dataTable_wrapper" style="overflow-y: scroll;">
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="table_id" class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Plcy_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Plcy_Name)
+                    </th>
+                    <th></th>
+                </tr>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plcy_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plcy_Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.Plcy_id}) |
+                            @Html.ActionLink("Details", "Details", new {id=item.Plcy_id}) |
+                            @Html.ActionLink("Delete", "Delete", new {id=item.Plcy_id })
+                        </td>
+                    </tr>
+
+                }
+                </tbody>
+            </table>
+        </div>        
+    </div>    
+</div>

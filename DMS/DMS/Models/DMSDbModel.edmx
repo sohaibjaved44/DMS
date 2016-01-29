@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CTGRY_TBL">
+          <Key>
+            <PropertyRef Name="CtgryId" />
+          </Key>
+          <Property Name="CtgryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CtgryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DCMNT_TBL">
+          <Key>
+            <PropertyRef Name="DCMT_ID" />
+          </Key>
+          <Property Name="DCMT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PLCY_NUM" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SCAN_DTE" Type="nvarchar" MaxLength="50" />
+          <Property Name="FILE_NME" Type="nvarchar" MaxLength="50" />
+          <Property Name="EXTN_ID" Type="int" />
+          <Property Name="FRST_NME" Type="nvarchar" MaxLength="50" />
+          <Property Name="LAST_NME" Type="nvarchar" MaxLength="50" />
+          <Property Name="STRG_LOC" Type="nvarchar" MaxLength="500" />
+          <Property Name="DCMT_NTE" Type="nvarchar" MaxLength="100" />
+          <Property Name="DCMT_IsChk" Type="bit" />
+          <Property Name="DCMT_IsScan" Type="bit" />
+          <Property Name="SCAN_TME" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_ID" Type="int" />
+          <Property Name="DCMT_TYPE_ID" Type="int" />
+          <Property Name="PLCY_ID" Type="int" />
+          <Property Name="PLAN_ID" Type="int" />
+          <Property Name="PRDCT_TYPE_ID" Type="int" />
+          <Property Name="DEPT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="DCMT_TYPE">
+          <Key>
+            <PropertyRef Name="Dcmt_id" />
+          </Key>
+          <Property Name="Dcmt_id" Type="int" Nullable="false" />
+          <Property Name="Dcmt_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DEPT_TBL">
+          <Key>
+            <PropertyRef Name="Dpt_id" />
+          </Key>
+          <Property Name="Dpt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dpt_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EXTN_TBL">
+          <Key>
+            <PropertyRef Name="EXTN_ID" />
+          </Key>
+          <Property Name="EXTN_ID" Type="int" Nullable="false" />
+          <Property Name="EXTN_NAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PLAN_TBL">
+          <Key>
+            <PropertyRef Name="Plan_id" />
+          </Key>
+          <Property Name="Plan_id" Type="int" Nullable="false" />
+          <Property Name="Plan_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_type" Type="int" />
+        </EntityType>
+        <EntityType Name="PLCY_TBL">
+          <Key>
+            <PropertyRef Name="Plcy_id" />
+          </Key>
+          <Property Name="Plcy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plcy_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PRDCT_TYPE">
+          <Key>
+            <PropertyRef Name="Product_type_id" />
+          </Key>
+          <Property Name="Product_type_id" Type="int" Nullable="false" />
+          <Property Name="Product_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Plan_id" Type="int" />
+        </EntityType>
+        <EntityType Name="PYMT_TBL">
+          <Key>
+            <PropertyRef Name="Pymt_id" />
+          </Key>
+          <Property Name="Pymt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pymt_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ROLE_TBL">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_NME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="STRG_LOC_TBL">
+          <Key>
+            <PropertyRef Name="STRG_ID" />
+          </Key>
+          <Property Name="STRG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STRG_LOC" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="USER_TBL">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FRST_NME" Type="nvarchar" MaxLength="50" />
+          <Property Name="LAST_NME" Type="nvarchar" MaxLength="50" />
+          <Property Name="GNDR" Type="int" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="50" />
+          <Property Name="ROLE_ID" Type="int" />
+          <Property Name="DEPT_ID" Type="int" />
+          <Property Name="USER_EMAIL" Type="nvarchar" MaxLength="150" />
+          <Property Name="USER_Username" Type="nvarchar" MaxLength="150" />
+          <Property Name="USER_Password" Type="nvarchar" MaxLength="150" />
+          <Property Name="USER_Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_Address" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_PRDCT_TYPE_PRDCT_TYPE">
+          <End Role="PLAN_TBL" Type="Self.PLAN_TBL" Multiplicity="0..1" />
+          <End Role="PRDCT_TYPE" Type="Self.PRDCT_TYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLAN_TBL">
+              <PropertyRef Name="Plan_id" />
+            </Principal>
+            <Dependent Role="PRDCT_TYPE">
+              <PropertyRef Name="Plan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_TBL_DEPT_TBL">
+          <End Role="DEPT_TBL" Type="Self.DEPT_TBL" Multiplicity="0..1" />
+          <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPT_TBL">
+              <PropertyRef Name="Dpt_id" />
+            </Principal>
+            <Dependent Role="USER_TBL">
+              <PropertyRef Name="DEPT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_TBL_ROLE_TBL">
+          <End Role="ROLE_TBL" Type="Self.ROLE_TBL" Multiplicity="0..1" />
+          <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE_TBL">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="USER_TBL">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DMSModelStoreContainer">
+          <EntitySet Name="CTGRY_TBL" EntityType="Self.CTGRY_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DCMNT_TBL" EntityType="Self.DCMNT_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DCMT_TYPE" EntityType="Self.DCMT_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPT_TBL" EntityType="Self.DEPT_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXTN_TBL" EntityType="Self.EXTN_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLAN_TBL" EntityType="Self.PLAN_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLCY_TBL" EntityType="Self.PLCY_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRDCT_TYPE" EntityType="Self.PRDCT_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PYMT_TBL" EntityType="Self.PYMT_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE_TBL" EntityType="Self.ROLE_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STRG_LOC_TBL" EntityType="Self.STRG_LOC_TBL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_TBL" EntityType="Self.USER_TBL" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PRDCT_TYPE_PRDCT_TYPE" Association="Self.FK_PRDCT_TYPE_PRDCT_TYPE">
+            <End Role="PLAN_TBL" EntitySet="PLAN_TBL" />
+            <End Role="PRDCT_TYPE" EntitySet="PRDCT_TYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_TBL_DEPT_TBL" Association="Self.FK_USER_TBL_DEPT_TBL">
+            <End Role="DEPT_TBL" EntitySet="DEPT_TBL" />
+            <End Role="USER_TBL" EntitySet="USER_TBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_TBL_ROLE_TBL" Association="Self.FK_USER_TBL_ROLE_TBL">
+            <End Role="ROLE_TBL" EntitySet="ROLE_TBL" />
+            <End Role="USER_TBL" EntitySet="USER_TBL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CTGRY_TBL">
+          <Key>
+            <PropertyRef Name="CtgryId" />
+          </Key>
+          <Property Name="CtgryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CtgryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DCMNT_TBL">
+          <Key>
+            <PropertyRef Name="DCMT_ID" />
+          </Key>
+          <Property Name="DCMT_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLCY_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SCAN_DTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FILE_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FRST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LAST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STRG_LOC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DCMT_NTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DCMT_IsChk" Type="Boolean" />
+          <Property Name="DCMT_IsScan" Type="Boolean" />
+          <Property Name="SCAN_TME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="DCMT_TYPE_ID" Type="Int32" />
+          <Property Name="PLCY_ID" Type="Int32" />
+          <Property Name="PLAN_ID" Type="Int32" />
+          <Property Name="PRDCT_TYPE_ID" Type="Int32" />
+          <Property Name="EXTN_ID" Type="Int32" />
+          <Property Name="DEPT_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DEPT_TBL">
+          <Key>
+            <PropertyRef Name="Dpt_id" />
+          </Key>
+          <Property Name="Dpt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dpt_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER_TBL" Relationship="Self.FK_USER_TBL_DEPT_TBL" FromRole="DEPT_TBL" ToRole="USER_TBL" />
+        </EntityType>
+        <EntityType Name="PYMT_TBL">
+          <Key>
+            <PropertyRef Name="Pymt_id" />
+          </Key>
+          <Property Name="Pymt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pymt_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ROLE_TBL">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER_TBL" Relationship="Self.FK_USER_TBL_ROLE_TBL" FromRole="ROLE_TBL" ToRole="USER_TBL" />
+        </EntityType>
+        <EntityType Name="USER_TBL">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FRST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LAST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GNDR" Type="Int32" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ROLE_ID" Type="Int32" />
+          <Property Name="DEPT_ID" Type="Int32" />
+          <Property Name="USER_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="USER_Username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="USER_Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="USER_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DEPT_TBL" Relationship="Self.FK_USER_TBL_DEPT_TBL" FromRole="USER_TBL" ToRole="DEPT_TBL" />
+          <NavigationProperty Name="ROLE_TBL" Relationship="Self.FK_USER_TBL_ROLE_TBL" FromRole="USER_TBL" ToRole="ROLE_TBL" />
+        </EntityType>
+        <Association Name="FK_USER_TBL_DEPT_TBL">
+          <End Role="DEPT_TBL" Type="Self.DEPT_TBL" Multiplicity="0..1" />
+          <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPT_TBL">
+              <PropertyRef Name="Dpt_id" />
+            </Principal>
+            <Dependent Role="USER_TBL">
+              <PropertyRef Name="DEPT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_TBL_ROLE_TBL">
+          <End Role="ROLE_TBL" Type="Self.ROLE_TBL" Multiplicity="0..1" />
+          <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE_TBL">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="USER_TBL">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DMSDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CTGRY_TBL" EntityType="Self.CTGRY_TBL" />
+          <EntitySet Name="DCMNT_TBL" EntityType="Self.DCMNT_TBL" />
+          <EntitySet Name="DEPT_TBL" EntityType="Self.DEPT_TBL" />
+          <EntitySet Name="PYMT_TBL" EntityType="Self.PYMT_TBL" />
+          <EntitySet Name="ROLE_TBL" EntityType="Self.ROLE_TBL" />
+          <EntitySet Name="USER_TBL" EntityType="Self.USER_TBL" />
+          <AssociationSet Name="FK_USER_TBL_DEPT_TBL" Association="Self.FK_USER_TBL_DEPT_TBL">
+            <End Role="DEPT_TBL" EntitySet="DEPT_TBL" />
+            <End Role="USER_TBL" EntitySet="USER_TBL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_TBL_ROLE_TBL" Association="Self.FK_USER_TBL_ROLE_TBL">
+            <End Role="ROLE_TBL" EntitySet="ROLE_TBL" />
+            <End Role="USER_TBL" EntitySet="USER_TBL" />
+          </AssociationSet>
+          <EntitySet Name="STRG_LOC_TBL" EntityType="DMSModel.STRG_LOC_TBL" />
+          <EntitySet Name="PLAN_TBL" EntityType="DMSModel.PLAN_TBL" />
+          <EntitySet Name="PLCY_TBL" EntityType="DMSModel.PLCY_TBL" />
+          <EntitySet Name="PRDCT_TYPE" EntityType="DMSModel.PRDCT_TYPE" />
+          <AssociationSet Name="FK_PRDCT_TYPE_PRDCT_TYPE" Association="DMSModel.FK_PRDCT_TYPE_PRDCT_TYPE">
+            <End Role="PLAN_TBL" EntitySet="PLAN_TBL" />
+            <End Role="PRDCT_TYPE" EntitySet="PRDCT_TYPE" />
+          </AssociationSet>
+          <EntitySet Name="DCMT_TYPE" EntityType="DMSModel.DCMT_TYPE" />
+          <EntitySet Name="EXTN_TBL" EntityType="DMSModel.EXTN_TBL" />
+        </EntityContainer>
+        <EntityType Name="STRG_LOC_TBL">
+          <Key>
+            <PropertyRef Name="STRG_ID" />
+          </Key>
+          <Property Name="STRG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STRG_LOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PLAN_TBL">
+          <Key>
+            <PropertyRef Name="Plan_id" />
+          </Key>
+          <Property Name="Plan_id" Type="Int32" Nullable="false" />
+          <Property Name="Plan_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_type" Type="Int32" />
+          <NavigationProperty Name="PRDCT_TYPE" Relationship="DMSModel.FK_PRDCT_TYPE_PRDCT_TYPE" FromRole="PLAN_TBL" ToRole="PRDCT_TYPE" />
+        </EntityType>
+        <EntityType Name="PLCY_TBL">
+          <Key>
+            <PropertyRef Name="Plcy_id" />
+          </Key>
+          <Property Name="Plcy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plcy_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PRDCT_TYPE">
+          <Key>
+            <PropertyRef Name="Product_type_id" />
+          </Key>
+          <Property Name="Product_type_id" Type="Int32" Nullable="false" />
+          <Property Name="Product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Plan_id" Type="Int32" />
+          <NavigationProperty Name="PLAN_TBL" Relationship="DMSModel.FK_PRDCT_TYPE_PRDCT_TYPE" FromRole="PRDCT_TYPE" ToRole="PLAN_TBL" />
+        </EntityType>
+        <Association Name="FK_PRDCT_TYPE_PRDCT_TYPE">
+          <End Type="DMSModel.PLAN_TBL" Role="PLAN_TBL" Multiplicity="0..1" />
+          <End Type="DMSModel.PRDCT_TYPE" Role="PRDCT_TYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLAN_TBL">
+              <PropertyRef Name="Plan_id" />
+            </Principal>
+            <Dependent Role="PRDCT_TYPE">
+              <PropertyRef Name="Plan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DCMT_TYPE">
+          <Key>
+            <PropertyRef Name="Dcmt_id" />
+          </Key>
+          <Property Name="Dcmt_id" Type="Int32" Nullable="false" />
+          <Property Name="Dcmt_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EXTN_TBL">
+          <Key>
+            <PropertyRef Name="EXTN_ID" />
+          </Key>
+          <Property Name="EXTN_ID" Type="Int32" Nullable="false" />
+          <Property Name="EXTN_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DMSModelStoreContainer" CdmEntityContainer="DMSDbEntities">
+          <EntitySetMapping Name="CTGRY_TBL">
+            <EntityTypeMapping TypeName="DMSModel.CTGRY_TBL">
+              <MappingFragment StoreEntitySet="CTGRY_TBL">
+                <ScalarProperty Name="CtgryId" ColumnName="CtgryId" />
+                <ScalarProperty Name="CtgryName" ColumnName="CtgryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DCMNT_TBL">
+            <EntityTypeMapping TypeName="DMSModel.DCMNT_TBL">
+              <MappingFragment StoreEntitySet="DCMNT_TBL">
+                <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+                <ScalarProperty Name="EXTN_ID" ColumnName="EXTN_ID" />
+                <ScalarProperty Name="PRDCT_TYPE_ID" ColumnName="PRDCT_TYPE_ID" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+                <ScalarProperty Name="PLCY_ID" ColumnName="PLCY_ID" />
+                <ScalarProperty Name="DCMT_TYPE_ID" ColumnName="DCMT_TYPE_ID" />
+                <ScalarProperty Name="DCMT_ID" ColumnName="DCMT_ID" />
+                <ScalarProperty Name="PLCY_NUM" ColumnName="PLCY_NUM" />
+                <ScalarProperty Name="SCAN_DTE" ColumnName="SCAN_DTE" />
+                <ScalarProperty Name="FILE_NME" ColumnName="FILE_NME" />
+                <ScalarProperty Name="FRST_NME" ColumnName="FRST_NME" />
+                <ScalarProperty Name="LAST_NME" ColumnName="LAST_NME" />
+                <ScalarProperty Name="STRG_LOC" ColumnName="STRG_LOC" />
+                <ScalarProperty Name="DCMT_NTE" ColumnName="DCMT_NTE" />
+                <ScalarProperty Name="DCMT_IsChk" ColumnName="DCMT_IsChk" />
+                <ScalarProperty Name="DCMT_IsScan" ColumnName="DCMT_IsScan" />
+                <ScalarProperty Name="SCAN_TME" ColumnName="SCAN_TME" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPT_TBL">
+            <EntityTypeMapping TypeName="DMSModel.DEPT_TBL">
+              <MappingFragment StoreEntitySet="DEPT_TBL">
+                <ScalarProperty Name="Dpt_id" ColumnName="Dpt_id" />
+                <ScalarProperty Name="Dpt_Name" ColumnName="Dpt_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PYMT_TBL">
+            <EntityTypeMapping TypeName="DMSModel.PYMT_TBL">
+              <MappingFragment StoreEntitySet="PYMT_TBL">
+                <ScalarProperty Name="Pymt_id" ColumnName="Pymt_id" />
+                <ScalarProperty Name="Pymt_Name" ColumnName="Pymt_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_TBL">
+            <EntityTypeMapping TypeName="DMSModel.ROLE_TBL">
+              <MappingFragment StoreEntitySet="ROLE_TBL">
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ROLE_NME" ColumnName="ROLE_NME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_TBL">
+            <EntityTypeMapping TypeName="DMSModel.USER_TBL">
+              <MappingFragment StoreEntitySet="USER_TBL">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="FRST_NME" ColumnName="FRST_NME" />
+                <ScalarProperty Name="LAST_NME" ColumnName="LAST_NME" />
+                <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+                <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+                <ScalarProperty Name="USER_Username" ColumnName="USER_Username" />
+                <ScalarProperty Name="USER_Password" ColumnName="USER_Password" />
+                <ScalarProperty Name="USER_Phone" ColumnName="USER_Phone" />
+                <ScalarProperty Name="USER_Address" ColumnName="USER_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STRG_LOC_TBL">
+            <EntityTypeMapping TypeName="DMSModel.STRG_LOC_TBL">
+              <MappingFragment StoreEntitySet="STRG_LOC_TBL">
+                <ScalarProperty Name="STRG_LOC" ColumnName="STRG_LOC" />
+                <ScalarProperty Name="STRG_ID" ColumnName="STRG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLAN_TBL">
+            <EntityTypeMapping TypeName="DMSModel.PLAN_TBL">
+              <MappingFragment StoreEntitySet="PLAN_TBL">
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
+                <ScalarProperty Name="Plan_Name" ColumnName="Plan_Name" />
+                <ScalarProperty Name="Plan_id" ColumnName="Plan_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLCY_TBL">
+            <EntityTypeMapping TypeName="DMSModel.PLCY_TBL">
+              <MappingFragment StoreEntitySet="PLCY_TBL">
+                <ScalarProperty Name="Plcy_Name" ColumnName="Plcy_Name" />
+                <ScalarProperty Name="Plcy_id" ColumnName="Plcy_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRDCT_TYPE">
+            <EntityTypeMapping TypeName="DMSModel.PRDCT_TYPE">
+              <MappingFragment StoreEntitySet="PRDCT_TYPE">
+                <ScalarProperty Name="Plan_id" ColumnName="Plan_id" />
+                <ScalarProperty Name="Product_name" ColumnName="Product_name" />
+                <ScalarProperty Name="Product_type_id" ColumnName="Product_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DCMT_TYPE">
+            <EntityTypeMapping TypeName="DMSModel.DCMT_TYPE">
+              <MappingFragment StoreEntitySet="DCMT_TYPE">
+                <ScalarProperty Name="Dcmt_type1" ColumnName="Dcmt_type" />
+                <ScalarProperty Name="Dcmt_id" ColumnName="Dcmt_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXTN_TBL">
+            <EntityTypeMapping TypeName="DMSModel.EXTN_TBL">
+              <MappingFragment StoreEntitySet="EXTN_TBL">
+                <ScalarProperty Name="EXTN_NAME" ColumnName="EXTN_NAME" />
+                <ScalarProperty Name="EXTN_ID" ColumnName="EXTN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

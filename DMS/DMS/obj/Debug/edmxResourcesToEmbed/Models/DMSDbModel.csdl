@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CTGRY_TBL">
+    <Key>
+      <PropertyRef Name="CtgryId" />
+    </Key>
+    <Property Name="CtgryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CtgryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DCMNT_TBL">
+    <Key>
+      <PropertyRef Name="DCMT_ID" />
+    </Key>
+    <Property Name="DCMT_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PLCY_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SCAN_DTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FILE_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FRST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STRG_LOC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DCMT_NTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DCMT_IsChk" Type="Boolean" />
+    <Property Name="DCMT_IsScan" Type="Boolean" />
+    <Property Name="SCAN_TME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USER_ID" Type="Int32" />
+    <Property Name="DCMT_TYPE_ID" Type="Int32" />
+    <Property Name="PLCY_ID" Type="Int32" />
+    <Property Name="PLAN_ID" Type="Int32" />
+    <Property Name="PRDCT_TYPE_ID" Type="Int32" />
+    <Property Name="EXTN_ID" Type="Int32" />
+    <Property Name="DEPT_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DEPT_TBL">
+    <Key>
+      <PropertyRef Name="Dpt_id" />
+    </Key>
+    <Property Name="Dpt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dpt_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="USER_TBL" Relationship="Self.FK_USER_TBL_DEPT_TBL" FromRole="DEPT_TBL" ToRole="USER_TBL" />
+  </EntityType>
+  <EntityType Name="PYMT_TBL">
+    <Key>
+      <PropertyRef Name="Pymt_id" />
+    </Key>
+    <Property Name="Pymt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pymt_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ROLE_TBL">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROLE_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="USER_TBL" Relationship="Self.FK_USER_TBL_ROLE_TBL" FromRole="ROLE_TBL" ToRole="USER_TBL" />
+  </EntityType>
+  <EntityType Name="USER_TBL">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FRST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GNDR" Type="Int32" />
+    <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ROLE_ID" Type="Int32" />
+    <Property Name="DEPT_ID" Type="Int32" />
+    <Property Name="USER_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="USER_Username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="USER_Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="USER_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USER_Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DEPT_TBL" Relationship="Self.FK_USER_TBL_DEPT_TBL" FromRole="USER_TBL" ToRole="DEPT_TBL" />
+    <NavigationProperty Name="ROLE_TBL" Relationship="Self.FK_USER_TBL_ROLE_TBL" FromRole="USER_TBL" ToRole="ROLE_TBL" />
+  </EntityType>
+  <Association Name="FK_USER_TBL_DEPT_TBL">
+    <End Role="DEPT_TBL" Type="Self.DEPT_TBL" Multiplicity="0..1" />
+    <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPT_TBL">
+        <PropertyRef Name="Dpt_id" />
+      </Principal>
+      <Dependent Role="USER_TBL">
+        <PropertyRef Name="DEPT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_TBL_ROLE_TBL">
+    <End Role="ROLE_TBL" Type="Self.ROLE_TBL" Multiplicity="0..1" />
+    <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE_TBL">
+        <PropertyRef Name="ROLE_ID" />
+      </Principal>
+      <Dependent Role="USER_TBL">
+        <PropertyRef Name="ROLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DMSDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CTGRY_TBL" EntityType="Self.CTGRY_TBL" />
+    <EntitySet Name="DCMNT_TBL" EntityType="Self.DCMNT_TBL" />
+    <EntitySet Name="DEPT_TBL" EntityType="Self.DEPT_TBL" />
+    <EntitySet Name="PYMT_TBL" EntityType="Self.PYMT_TBL" />
+    <EntitySet Name="ROLE_TBL" EntityType="Self.ROLE_TBL" />
+    <EntitySet Name="USER_TBL" EntityType="Self.USER_TBL" />
+    <AssociationSet Name="FK_USER_TBL_DEPT_TBL" Association="Self.FK_USER_TBL_DEPT_TBL">
+      <End Role="DEPT_TBL" EntitySet="DEPT_TBL" />
+      <End Role="USER_TBL" EntitySet="USER_TBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_TBL_ROLE_TBL" Association="Self.FK_USER_TBL_ROLE_TBL">
+      <End Role="ROLE_TBL" EntitySet="ROLE_TBL" />
+      <End Role="USER_TBL" EntitySet="USER_TBL" />
+    </AssociationSet>
+    <EntitySet Name="STRG_LOC_TBL" EntityType="DMSModel.STRG_LOC_TBL" />
+    <EntitySet Name="PLAN_TBL" EntityType="DMSModel.PLAN_TBL" />
+    <EntitySet Name="PLCY_TBL" EntityType="DMSModel.PLCY_TBL" />
+    <EntitySet Name="PRDCT_TYPE" EntityType="DMSModel.PRDCT_TYPE" />
+    <AssociationSet Name="FK_PRDCT_TYPE_PRDCT_TYPE" Association="DMSModel.FK_PRDCT_TYPE_PRDCT_TYPE">
+      <End Role="PLAN_TBL" EntitySet="PLAN_TBL" />
+      <End Role="PRDCT_TYPE" EntitySet="PRDCT_TYPE" />
+    </AssociationSet>
+    <EntitySet Name="DCMT_TYPE" EntityType="DMSModel.DCMT_TYPE" />
+    <EntitySet Name="EXTN_TBL" EntityType="DMSModel.EXTN_TBL" />
+  </EntityContainer>
+  <EntityType Name="STRG_LOC_TBL">
+    <Key>
+      <PropertyRef Name="STRG_ID" />
+    </Key>
+    <Property Name="STRG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STRG_LOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PLAN_TBL">
+    <Key>
+      <PropertyRef Name="Plan_id" />
+    </Key>
+    <Property Name="Plan_id" Type="Int32" Nullable="false" />
+    <Property Name="Plan_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_type" Type="Int32" />
+    <NavigationProperty Name="PRDCT_TYPE" Relationship="DMSModel.FK_PRDCT_TYPE_PRDCT_TYPE" FromRole="PLAN_TBL" ToRole="PRDCT_TYPE" />
+  </EntityType>
+  <EntityType Name="PLCY_TBL">
+    <Key>
+      <PropertyRef Name="Plcy_id" />
+    </Key>
+    <Property Name="Plcy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Plcy_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PRDCT_TYPE">
+    <Key>
+      <PropertyRef Name="Product_type_id" />
+    </Key>
+    <Property Name="Product_type_id" Type="Int32" Nullable="false" />
+    <Property Name="Product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Plan_id" Type="Int32" />
+    <NavigationProperty Name="PLAN_TBL" Relationship="DMSModel.FK_PRDCT_TYPE_PRDCT_TYPE" FromRole="PRDCT_TYPE" ToRole="PLAN_TBL" />
+  </EntityType>
+  <Association Name="FK_PRDCT_TYPE_PRDCT_TYPE">
+    <End Type="DMSModel.PLAN_TBL" Role="PLAN_TBL" Multiplicity="0..1" />
+    <End Type="DMSModel.PRDCT_TYPE" Role="PRDCT_TYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLAN_TBL">
+        <PropertyRef Name="Plan_id" />
+      </Principal>
+      <Dependent Role="PRDCT_TYPE">
+        <PropertyRef Name="Plan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DCMT_TYPE">
+    <Key>
+      <PropertyRef Name="Dcmt_id" />
+    </Key>
+    <Property Name="Dcmt_id" Type="Int32" Nullable="false" />
+    <Property Name="Dcmt_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EXTN_TBL">
+    <Key>
+      <PropertyRef Name="EXTN_ID" />
+    </Key>
+    <Property Name="EXTN_ID" Type="Int32" Nullable="false" />
+    <Property Name="EXTN_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

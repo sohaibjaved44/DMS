@@ -1,0 +1,176 @@
+﻿@using DMS.Models
+@model DMS.Models.USER_TBL
+
+@{
+    ViewBag.Title = "Create User";
+}
+
+<h2>Create New User</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="display: none">
+            @Html.Label("User Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USER_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.USER_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FRST_NME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FRST_NME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Last Name", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LAST_NME, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.LAST_NME, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Username", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USER_Username, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.USER_Username, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USER_EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.USER_EMAIL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.USER_Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.USER_Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Gender", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.GNDR, "Male", new {@checked = true})
+                        @Html.Label("Male")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.GNDR, "Female", new {@checked = false})
+                        @Html.Label("Female")
+                    </div>
+                </div>
+                @*@Html.EditorFor(model => model.GNDR, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.GNDR, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Date of Birth", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DOB, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.DOB, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("User Phone", htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USER_Phone, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.USER_Phone, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("User Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USER_Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.USER_Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @using (DMSDbEntities db = new DMSDbEntities())
+        {
+            var departments = db.DEPT_TBL.ToList();
+
+            List<SelectListItem> sl = new List<SelectListItem>();
+            SelectList slc;
+            foreach (var item in departments)
+            {
+                if (item.Dpt_id != null)
+                {
+                    SelectListItem sli = new SelectListItem();
+                    sli.Text = item.Dpt_Name;
+                    sli.Value = item.Dpt_id.ToString();
+                    sli.Selected = false;
+                    sl.Add(sli);
+                }
+            }
+            slc = new SelectList(sl, "Value", "Text");
+            //these are the names of the column in the db table with which the dropdown is going to be binded.
+            ViewBag.roles = slc;
+
+            <div class="form-group">
+                @Html.Label("Department", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.DEPT_ID, (SelectList)ViewBag.roles, "Please Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DEPT_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        @using (DMSDbEntities db = new DMSDbEntities())
+        {
+            var roles = db.ROLE_TBL.ToList();
+
+            List<SelectListItem> sl = new List<SelectListItem>();
+            SelectList slc;
+            foreach (var item in roles)
+            {
+                if (item.ROLE_ID != null)
+                {
+                    SelectListItem sli = new SelectListItem();
+                    sli.Text = item.ROLE_NME;
+                    sli.Value = item.ROLE_ID.ToString();
+                    sli.Selected = false;
+                    sl.Add(sli);
+                }
+            }
+            slc = new SelectList(sl, "Value", "Text");
+            //these are the names of the column in the db table with which the dropdown is going to be binded.
+            ViewBag.roles = slc;
+            
+            <div class="form-group">
+                @Html.Label("Role Id", htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ROLE_ID, (SelectList)ViewBag.roles, "Please Select",new{@class="form-control"})                    
+                    @Html.ValidationMessageFor(model => model.ROLE_ID, "", new {@class = "text-danger"})
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DMSModelStoreContainer" CdmEntityContainer="DMSDbEntities">
+    <EntitySetMapping Name="CTGRY_TBL">
+      <EntityTypeMapping TypeName="DMSModel.CTGRY_TBL">
+        <MappingFragment StoreEntitySet="CTGRY_TBL">
+          <ScalarProperty Name="CtgryId" ColumnName="CtgryId" />
+          <ScalarProperty Name="CtgryName" ColumnName="CtgryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCMNT_TBL">
+      <EntityTypeMapping TypeName="DMSModel.DCMNT_TBL">
+        <MappingFragment StoreEntitySet="DCMNT_TBL">
+          <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+          <ScalarProperty Name="EXTN_ID" ColumnName="EXTN_ID" />
+          <ScalarProperty Name="PRDCT_TYPE_ID" ColumnName="PRDCT_TYPE_ID" />
+          <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+          <ScalarProperty Name="PLCY_ID" ColumnName="PLCY_ID" />
+          <ScalarProperty Name="DCMT_TYPE_ID" ColumnName="DCMT_TYPE_ID" />
+          <ScalarProperty Name="DCMT_ID" ColumnName="DCMT_ID" />
+          <ScalarProperty Name="PLCY_NUM" ColumnName="PLCY_NUM" />
+          <ScalarProperty Name="SCAN_DTE" ColumnName="SCAN_DTE" />
+          <ScalarProperty Name="FILE_NME" ColumnName="FILE_NME" />
+          <ScalarProperty Name="FRST_NME" ColumnName="FRST_NME" />
+          <ScalarProperty Name="LAST_NME" ColumnName="LAST_NME" />
+          <ScalarProperty Name="STRG_LOC" ColumnName="STRG_LOC" />
+          <ScalarProperty Name="DCMT_NTE" ColumnName="DCMT_NTE" />
+          <ScalarProperty Name="DCMT_IsChk" ColumnName="DCMT_IsChk" />
+          <ScalarProperty Name="DCMT_IsScan" ColumnName="DCMT_IsScan" />
+          <ScalarProperty Name="SCAN_TME" ColumnName="SCAN_TME" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPT_TBL">
+      <EntityTypeMapping TypeName="DMSModel.DEPT_TBL">
+        <MappingFragment StoreEntitySet="DEPT_TBL">
+          <ScalarProperty Name="Dpt_id" ColumnName="Dpt_id" />
+          <ScalarProperty Name="Dpt_Name" ColumnName="Dpt_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PYMT_TBL">
+      <EntityTypeMapping TypeName="DMSModel.PYMT_TBL">
+        <MappingFragment StoreEntitySet="PYMT_TBL">
+          <ScalarProperty Name="Pymt_id" ColumnName="Pymt_id" />
+          <ScalarProperty Name="Pymt_Name" ColumnName="Pymt_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLE_TBL">
+      <EntityTypeMapping TypeName="DMSModel.ROLE_TBL">
+        <MappingFragment StoreEntitySet="ROLE_TBL">
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="ROLE_NME" ColumnName="ROLE_NME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_TBL">
+      <EntityTypeMapping TypeName="DMSModel.USER_TBL">
+        <MappingFragment StoreEntitySet="USER_TBL">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="FRST_NME" ColumnName="FRST_NME" />
+          <ScalarProperty Name="LAST_NME" ColumnName="LAST_NME" />
+          <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="DEPT_ID" ColumnName="DEPT_ID" />
+          <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+          <ScalarProperty Name="USER_Username" ColumnName="USER_Username" />
+          <ScalarProperty Name="USER_Password" ColumnName="USER_Password" />
+          <ScalarProperty Name="USER_Phone" ColumnName="USER_Phone" />
+          <ScalarProperty Name="USER_Address" ColumnName="USER_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STRG_LOC_TBL">
+      <EntityTypeMapping TypeName="DMSModel.STRG_LOC_TBL">
+        <MappingFragment StoreEntitySet="STRG_LOC_TBL">
+          <ScalarProperty Name="STRG_LOC" ColumnName="STRG_LOC" />
+          <ScalarProperty Name="STRG_ID" ColumnName="STRG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLAN_TBL">
+      <EntityTypeMapping TypeName="DMSModel.PLAN_TBL">
+        <MappingFragment StoreEntitySet="PLAN_TBL">
+          <ScalarProperty Name="product_type" ColumnName="product_type" />
+          <ScalarProperty Name="Plan_Name" ColumnName="Plan_Name" />
+          <ScalarProperty Name="Plan_id" ColumnName="Plan_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLCY_TBL">
+      <EntityTypeMapping TypeName="DMSModel.PLCY_TBL">
+        <MappingFragment StoreEntitySet="PLCY_TBL">
+          <ScalarProperty Name="Plcy_Name" ColumnName="Plcy_Name" />
+          <ScalarProperty Name="Plcy_id" ColumnName="Plcy_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRDCT_TYPE">
+      <EntityTypeMapping TypeName="DMSModel.PRDCT_TYPE">
+        <MappingFragment StoreEntitySet="PRDCT_TYPE">
+          <ScalarProperty Name="Plan_id" ColumnName="Plan_id" />
+          <ScalarProperty Name="Product_name" ColumnName="Product_name" />
+          <ScalarProperty Name="Product_type_id" ColumnName="Product_type_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCMT_TYPE">
+      <EntityTypeMapping TypeName="DMSModel.DCMT_TYPE">
+        <MappingFragment StoreEntitySet="DCMT_TYPE">
+          <ScalarProperty Name="Dcmt_type1" ColumnName="Dcmt_type" />
+          <ScalarProperty Name="Dcmt_id" ColumnName="Dcmt_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXTN_TBL">
+      <EntityTypeMapping TypeName="DMSModel.EXTN_TBL">
+        <MappingFragment StoreEntitySet="EXTN_TBL">
+          <ScalarProperty Name="EXTN_NAME" ColumnName="EXTN_NAME" />
+          <ScalarProperty Name="EXTN_ID" ColumnName="EXTN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

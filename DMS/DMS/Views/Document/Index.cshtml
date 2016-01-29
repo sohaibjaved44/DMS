@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DMS.Models.DCMNT_TBL>
+@{
+    ViewBag.Title = "Documents";
+}
+<h2>Documents</h2>
+<p>
+    @Html.ActionLink("Scan New", "DocumentScan")
+</p>
+<div class="dataTable_wrapper" style="overflow-y: scroll;">
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="AllNewCasesTable" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <th>
+                        Policy Number
+                    </th>
+                    <th>
+                        Scan Date
+                    </th>
+                    <th>
+                        File Name
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Path
+                    </th>
+                    <th>
+                        Document Note
+                    </th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                @{
+                    object displayMode =  new { disabled = "disabled" };
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PLCY_NUM)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SCAN_DTE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FILE_NME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FRST_NME, displayMode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LAST_NME, displayMode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.STRG_LOC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DCMT_NTE)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new {id = item.DCMT_ID}) |
+                            @Html.ActionLink("Details", "Details", new {id = item.DCMT_ID}) |
+                            @Html.ActionLink("Delete", "Delete", new {id = item.DCMT_ID})
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $('#AllNewCasesTable').DataTable({
+            responsive: true
+        });
+
+    });
+</script>

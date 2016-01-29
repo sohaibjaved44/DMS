@@ -1,0 +1,39 @@
+﻿@model DMS.Models.ROLE_TBL
+@{
+    ViewBag.Title = "Delete Role";
+}
+
+<h2>Delete Role</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr/>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <dl class="dl-horizontal">
+        <dt>
+            Role Id
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.ROLE_ID, new { @style = "border:none" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROLE_NME)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.ROLE_NME, new { @style = "border:none" })
+        </dd>
+
+    </dl>
+    
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

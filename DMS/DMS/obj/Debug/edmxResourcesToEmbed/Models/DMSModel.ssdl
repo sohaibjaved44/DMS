@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CTGRY_TBL">
+    <Key>
+      <PropertyRef Name="CtgryId" />
+    </Key>
+    <Property Name="CtgryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CtgryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DCMNT_TBL">
+    <Key>
+      <PropertyRef Name="DCMT_ID" />
+    </Key>
+    <Property Name="DCMT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PLCY_NUM" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SCAN_DTE" Type="nvarchar" MaxLength="50" />
+    <Property Name="FILE_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="EXTN" Type="nvarchar" MaxLength="5" />
+    <Property Name="FRST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="LAST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="STRG_LOC" Type="nvarchar" MaxLength="500" />
+    <Property Name="DCMT_NTE" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ROLE_TBL">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROLE_NME" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="USER_TBL">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FRST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="LAST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="GNDR" Type="int" />
+    <Property Name="DOB" Type="nvarchar" MaxLength="50" />
+    <Property Name="ROLE_ID" Type="int" />
+  </EntityType>
+  <EntityContainer Name="DMSModelStoreContainer">
+    <EntitySet Name="CTGRY_TBL" EntityType="Self.CTGRY_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DCMNT_TBL" EntityType="Self.DCMNT_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLE_TBL" EntityType="Self.ROLE_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_TBL" EntityType="Self.USER_TBL" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

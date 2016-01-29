@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DMS.Models.DCMT_TYPE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dcmt_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dcmt_type1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dcmt_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dcmt_type1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Dcmt_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Dcmt_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Dcmt_id })
+        </td>
+    </tr>
+}
+
+</table>

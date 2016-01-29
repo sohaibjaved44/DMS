@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CTGRY_TBL">
+    <Key>
+      <PropertyRef Name="CtgryId" />
+    </Key>
+    <Property Name="CtgryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CtgryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DCMNT_TBL">
+    <Key>
+      <PropertyRef Name="DCMT_ID" />
+    </Key>
+    <Property Name="DCMT_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PLCY_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SCAN_DTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FILE_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EXTN" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="FRST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STRG_LOC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DCMT_NTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ROLE_TBL">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+    <Property Name="ROLE_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CTGRY_TBL" EntityType="Self.CTGRY_TBL" />
+    <EntitySet Name="DCMNT_TBL" EntityType="Self.DCMNT_TBL" />
+    <EntitySet Name="ROLE_TBL" EntityType="Self.ROLE_TBL" />
+    <EntitySet Name="USER_TBL" EntityType="DMSModel.USER_TBL" />
+  </EntityContainer>
+  <EntityType Name="USER_TBL">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FRST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GNDR" Type="Int32" />
+    <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ROLE_ID" Type="Int32" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,46 @@
+﻿@model DMS.Models.DCMNT_TBL
+@{
+    ViewBag.Title = "Document Scan";
+}
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3>Scan Image/s</h3>
+                    <hr/>
+                    <div id="dwtcontrolContainer"> </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label><input type="radio" value="jpg" name="ImageType" id="imgTypejpeg"/>JPEG</label>
+                        </div>
+                        <div class="col-md-2">
+                            <label><input type="radio" value="tif" name="ImageType" id="imgTypetiff"/>TIFF</label>
+                        </div>
+                        <div class="col-md-2">
+                            <label><input type="radio" value="pdf" name="ImageType" id="imgTypepdf" checked="checked"/>PDF</label>
+                        </div>
+
+                        <input class="btn btn-default col-md-3" type="button" value="Scan" onclick="AcquireImage();"/>
+                        <input class="btn btn-default col-md-3" type="button" value="Load" onclick="LoadImage();"/>
+
+                    </div>
+
+
+                </div>
+                
+                <div class="col-md-7">
+                    @Html.Partial("~/Views/Shared/_createScan.cshtml", Model)                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-1">
+            
+        </div>
+    </div>
+    
+}

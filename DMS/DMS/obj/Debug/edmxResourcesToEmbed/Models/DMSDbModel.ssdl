@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CTGRY_TBL">
+    <Key>
+      <PropertyRef Name="CtgryId" />
+    </Key>
+    <Property Name="CtgryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CtgryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DCMNT_TBL">
+    <Key>
+      <PropertyRef Name="DCMT_ID" />
+    </Key>
+    <Property Name="DCMT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PLCY_NUM" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SCAN_DTE" Type="nvarchar" MaxLength="50" />
+    <Property Name="FILE_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="EXTN_ID" Type="int" />
+    <Property Name="FRST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="LAST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="STRG_LOC" Type="nvarchar" MaxLength="500" />
+    <Property Name="DCMT_NTE" Type="nvarchar" MaxLength="100" />
+    <Property Name="DCMT_IsChk" Type="bit" />
+    <Property Name="DCMT_IsScan" Type="bit" />
+    <Property Name="SCAN_TME" Type="nvarchar" MaxLength="50" />
+    <Property Name="USER_ID" Type="int" />
+    <Property Name="DCMT_TYPE_ID" Type="int" />
+    <Property Name="PLCY_ID" Type="int" />
+    <Property Name="PLAN_ID" Type="int" />
+    <Property Name="PRDCT_TYPE_ID" Type="int" />
+    <Property Name="DEPT_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="DCMT_TYPE">
+    <Key>
+      <PropertyRef Name="Dcmt_id" />
+    </Key>
+    <Property Name="Dcmt_id" Type="int" Nullable="false" />
+    <Property Name="Dcmt_type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DEPT_TBL">
+    <Key>
+      <PropertyRef Name="Dpt_id" />
+    </Key>
+    <Property Name="Dpt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dpt_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="EXTN_TBL">
+    <Key>
+      <PropertyRef Name="EXTN_ID" />
+    </Key>
+    <Property Name="EXTN_ID" Type="int" Nullable="false" />
+    <Property Name="EXTN_NAME" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PLAN_TBL">
+    <Key>
+      <PropertyRef Name="Plan_id" />
+    </Key>
+    <Property Name="Plan_id" Type="int" Nullable="false" />
+    <Property Name="Plan_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_type" Type="int" />
+  </EntityType>
+  <EntityType Name="PLCY_TBL">
+    <Key>
+      <PropertyRef Name="Plcy_id" />
+    </Key>
+    <Property Name="Plcy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Plcy_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PRDCT_TYPE">
+    <Key>
+      <PropertyRef Name="Product_type_id" />
+    </Key>
+    <Property Name="Product_type_id" Type="int" Nullable="false" />
+    <Property Name="Product_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Plan_id" Type="int" />
+  </EntityType>
+  <EntityType Name="PYMT_TBL">
+    <Key>
+      <PropertyRef Name="Pymt_id" />
+    </Key>
+    <Property Name="Pymt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pymt_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ROLE_TBL">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROLE_NME" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STRG_LOC_TBL">
+    <Key>
+      <PropertyRef Name="STRG_ID" />
+    </Key>
+    <Property Name="STRG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STRG_LOC" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="USER_TBL">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FRST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="LAST_NME" Type="nvarchar" MaxLength="50" />
+    <Property Name="GNDR" Type="int" />
+    <Property Name="DOB" Type="nvarchar" MaxLength="50" />
+    <Property Name="ROLE_ID" Type="int" />
+    <Property Name="DEPT_ID" Type="int" />
+    <Property Name="USER_EMAIL" Type="nvarchar" MaxLength="150" />
+    <Property Name="USER_Username" Type="nvarchar" MaxLength="150" />
+    <Property Name="USER_Password" Type="nvarchar" MaxLength="150" />
+    <Property Name="USER_Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="USER_Address" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK_PRDCT_TYPE_PRDCT_TYPE">
+    <End Role="PLAN_TBL" Type="Self.PLAN_TBL" Multiplicity="0..1" />
+    <End Role="PRDCT_TYPE" Type="Self.PRDCT_TYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLAN_TBL">
+        <PropertyRef Name="Plan_id" />
+      </Principal>
+      <Dependent Role="PRDCT_TYPE">
+        <PropertyRef Name="Plan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_TBL_DEPT_TBL">
+    <End Role="DEPT_TBL" Type="Self.DEPT_TBL" Multiplicity="0..1" />
+    <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPT_TBL">
+        <PropertyRef Name="Dpt_id" />
+      </Principal>
+      <Dependent Role="USER_TBL">
+        <PropertyRef Name="DEPT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_TBL_ROLE_TBL">
+    <End Role="ROLE_TBL" Type="Self.ROLE_TBL" Multiplicity="0..1" />
+    <End Role="USER_TBL" Type="Self.USER_TBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE_TBL">
+        <PropertyRef Name="ROLE_ID" />
+      </Principal>
+      <Dependent Role="USER_TBL">
+        <PropertyRef Name="ROLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DMSModelStoreContainer">
+    <EntitySet Name="CTGRY_TBL" EntityType="Self.CTGRY_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DCMNT_TBL" EntityType="Self.DCMNT_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DCMT_TYPE" EntityType="Self.DCMT_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPT_TBL" EntityType="Self.DEPT_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXTN_TBL" EntityType="Self.EXTN_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLAN_TBL" EntityType="Self.PLAN_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLCY_TBL" EntityType="Self.PLCY_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRDCT_TYPE" EntityType="Self.PRDCT_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PYMT_TBL" EntityType="Self.PYMT_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLE_TBL" EntityType="Self.ROLE_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STRG_LOC_TBL" EntityType="Self.STRG_LOC_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_TBL" EntityType="Self.USER_TBL" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PRDCT_TYPE_PRDCT_TYPE" Association="Self.FK_PRDCT_TYPE_PRDCT_TYPE">
+      <End Role="PLAN_TBL" EntitySet="PLAN_TBL" />
+      <End Role="PRDCT_TYPE" EntitySet="PRDCT_TYPE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_TBL_DEPT_TBL" Association="Self.FK_USER_TBL_DEPT_TBL">
+      <End Role="DEPT_TBL" EntitySet="DEPT_TBL" />
+      <End Role="USER_TBL" EntitySet="USER_TBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_TBL_ROLE_TBL" Association="Self.FK_USER_TBL_ROLE_TBL">
+      <End Role="ROLE_TBL" EntitySet="ROLE_TBL" />
+      <End Role="USER_TBL" EntitySet="USER_TBL" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

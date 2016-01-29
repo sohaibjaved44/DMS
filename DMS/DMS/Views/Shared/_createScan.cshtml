@@ -1,0 +1,229 @@
+﻿@using DMS.Models
+@model DMS.Models.DCMNT_TBL
+<br/>
+<br/>
+
+@using (Html.BeginForm("CreateScan", "Document", FormMethod.Post))
+{
+    <div class="form-horizontal">
+    <hr/>
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    <div class="form-group" style="display: none">
+        @Html.LabelFor(model => model.DCMT_ID, htmlAttributes: new {@class = "control-label col-md-4"})
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.DCMT_ID, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.DCMT_ID, "", new {@class = "text-danger"})
+        </div>
+    </div>
+
+    @using (DMSDbEntities db = new DMSDbEntities())
+    {
+        var documentTypes = db.DCMT_TYPE.ToList();
+
+        List<SelectListItem> sl = new List<SelectListItem>();
+        SelectList slc;
+        foreach (var item in documentTypes)
+        {
+            if (item.Dcmt_id != null)
+            {
+                SelectListItem sli = new SelectListItem();
+                sli.Text = item.Dcmt_type1;
+                sli.Value = item.Dcmt_id.ToString();
+                sli.Selected = false;
+                sl.Add(sli);
+            }
+        }
+        slc = new SelectList(sl, "Value", "Text");
+        //these are the names of the column in the db table with which the dropdown is going to be binded.
+        ViewBag.doctypes = slc;
+
+        <div class="form-group">
+            @Html.Label("Document Type", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.DCMT_TYPE_ID, (SelectList) ViewBag.doctypes, "Please Select", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.DCMT_TYPE_ID, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    }
+
+    @using (DMSDbEntities db = new DMSDbEntities())
+    {
+        var policies = db.PRDCT_TYPE.ToList();
+
+        List<SelectListItem> sl = new List<SelectListItem>();
+        SelectList slc;
+        foreach (var item in policies)
+        {
+            if (item.Product_type_id != null)
+            {
+                SelectListItem sli = new SelectListItem();
+                sli.Text = item.Product_name;
+                sli.Value = item.Product_type_id.ToString();
+                sli.Selected = false;
+                sl.Add(sli);
+            }
+        }
+        slc = new SelectList(sl, "Value", "Text");
+        //these are the names of the column in the db table with which the dropdown is going to be binded.
+        ViewBag.policies = slc;
+
+        <div class="form-group">
+            @Html.Label("Product Type", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.PRDCT_TYPE_ID, (SelectList) ViewBag.policies, "Please Select", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PRDCT_TYPE_ID, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    }
+
+
+    <div class="form-group">
+        @Html.Label("Policy/Description#", htmlAttributes: new {@class = "control-label col-md-4"})
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.PLCY_ID, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.PLCY_ID, "", new {@class = "text-danger"})
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("First Name", htmlAttributes: new {@class = "control-label col-md-4"})
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.FRST_NME, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.FRST_NME, "", new {@class = "text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Last Name", htmlAttributes: new {@class = "control-label col-md-4"})
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.LAST_NME, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.LAST_NME, "", new {@class = "text-danger"})
+        </div>
+    </div>
+
+    @using (DMSDbEntities db = new DMSDbEntities())
+    {
+        var departments = db.DEPT_TBL.ToList();
+
+        List<SelectListItem> sl = new List<SelectListItem>();
+        SelectList slc;
+        foreach (var item in departments)
+        {
+            if (item.Dpt_id != null)
+            {
+                SelectListItem sli = new SelectListItem();
+                sli.Text = item.Dpt_Name;
+                sli.Value = item.Dpt_Name.ToString();
+                sli.Selected = false;
+                sl.Add(sli);
+            }
+        }
+        slc = new SelectList(sl, "Value", "Text");
+        //these are the names of the column in the db table with which the dropdown is going to be binded.
+        ViewBag.policies = slc;
+
+        <div class="form-group">
+            @Html.Label("Department", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.DEPT_ID, (SelectList) ViewBag.policies, "Please Select", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.DEPT_ID, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    }
+
+
+    <div class="form-group">
+        @Html.Label("Scan Date", htmlAttributes: new {@class = "control-label col-md-4"})
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.SCAN_DTE, new {htmlAttributes = new {@class = "form-control", @id = "date", disabled = "disabled"}})
+            @Html.ValidationMessageFor(model => model.SCAN_DTE, "", new {@class = "text-danger"})
+        </div>
+    </div>
+
+    @using (DMSDbEntities db = new DMSDbEntities())
+    {
+        var plans = db.PLAN_TBL.ToList();
+
+        List<SelectListItem> sl = new List<SelectListItem>();
+        SelectList slc;
+        foreach (var item in plans)
+        {
+            if (item.Plan_id != null)
+            {
+                SelectListItem sli = new SelectListItem();
+                sli.Text = item.Plan_Name;
+                sli.Value = item.Plan_id.ToString();
+                sli.Selected = false;
+                sl.Add(sli);
+            }
+        }
+        slc = new SelectList(sl, "Value", "Text");
+        //these are the names of the column in the db table with which the dropdown is going to be binded.
+        ViewBag.policies = slc;
+
+        <div class="form-group">
+            @Html.Label("Plan", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.PLAN_ID, (SelectList) ViewBag.policies, "Please Select", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.PLAN_ID, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    }
+
+
+    @using (DMSDbEntities db = new DMSDbEntities())
+    {
+        var extensions = db.EXTN_TBL.ToList();
+
+        List<SelectListItem> sl = new List<SelectListItem>();
+        SelectList slc;
+        foreach (var item in extensions)
+        {
+            if (item.EXTN_ID != null)
+            {
+                SelectListItem sli = new SelectListItem();
+                sli.Text = item.EXTN_NAME;
+                sli.Value = item.EXTN_ID.ToString();
+                sli.Selected = false;
+                sl.Add(sli);
+            }
+        }
+        slc = new SelectList(sl, "Value", "Text");
+        //these are the names of the column in the db table with which the dropdown is going to be binded.
+        ViewBag.policies = slc;
+
+        <div class="form-group">
+            @Html.Label("Extension", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.EXTN_ID, (SelectList) ViewBag.policies, "Please Select", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.EXTN_ID, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    }
+
+
+
+    <div class="form-group">
+        @Html.Label("Document Note", htmlAttributes: new {@class = "control-label col-md-4"})
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.DCMT_NTE, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.DCMT_NTE, "", new {@class = "text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default"/>
+        </div>
+    </div>
+
+
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#date").Date();
+    });
+</script>

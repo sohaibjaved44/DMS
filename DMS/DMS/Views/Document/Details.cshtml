@@ -1,0 +1,90 @@
+﻿@model DMS.Models.DCMNT_TBL
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DCMNT_TBL</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Document Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCMT_ID)
+        </dd>
+
+        <dt>
+            Policy Number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLCY_NUM)
+        </dd>
+
+        <dt>
+            Scan Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SCAN_DTE)
+        </dd>
+
+        <dt>
+            File Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FILE_NME)
+        </dd>
+
+        <dt>
+            Extension
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTN)
+        </dd>
+
+        <dt>
+            First Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FRST_NME)
+        </dd>
+
+        <dt>
+            Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_NME)
+        </dd>
+
+        <dt>
+            Path
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STRG_LOC)
+        </dd>
+
+        <dt>
+            Document Note
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCMT_NTE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

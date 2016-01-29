@@ -1,0 +1,33 @@
+﻿@model DMS.Models.ROLE_TBL
+
+@{
+    ViewBag.Title = "Role Details";
+}
+
+<h2>Role Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Role Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROLE_ID)
+        </dd>
+
+        <dt>
+            Role Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROLE_NME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

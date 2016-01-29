@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Scanning Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/dataTables.bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    @Styles.Render("~/Content/jquery.dataTables.css")
+    @Scripts.Render("~/Resources/dynamsoft.webtwain.initiate.js")
+    @Scripts.Render("~/Resources/dynamsoft.webtwain.config.js")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Document Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                
+                @*<ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>*@
+
+                
+                    @Html.Partial("_LoginPartial")               
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Scanning Application</p>
+        </footer>
+    </div>
+
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/dataTables.bootstrap.min.js")
+    @Scripts.Render("~/Scripts/jquery.dataTables.js")
+
+<script>
+    $(document).ready(function() {
+        $("#table_id").DataTable({responsive: true});
+        
+    });
+
+    //var DWObject;
+
+    //function Dynamsoft_OnReady() {
+    //    DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
+    //}
+
+    //function AcquireImage() {
+    //    if (DWObject) {
+    //        DWObject.IfDisableSourceAfterAcquire = true;
+    //        DWObject.SelectSource();
+    //        DWObject.OpenSource();
+    //        DWObject.AcquireImage();
+    //    }
+    //}
+
+
+    
+    var DWObject;
+    function Dynamsoft_OnReady() {
+        DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+        if (DWObject) {
+            DWObject.RegisterEvent('OnPostAllTransfers', SaveWithoutFileDialog);
+        }
+        DWObject.SetViewMode(2, 2);
+    }
+    function AcquireImage() {
+        if (DWObject) {
+            DWObject.SelectSource();
+            DWObject.OpenSource();            
+            DWObject.IfDisableSourceAfterAcquire = true;	// Scanner source will be disabled/closed automatically after the scan.            
+            DWObject.AcquireImage();
+        }
+    }
+    //Callback functions for async APIs
+    function OnSuccess() {
+        console.log('successful');
+    }
+    function OnFailure(errorCode, errorString) {
+        alert(errorString);
+    }
+    function LoadImage() {
+        if (DWObject) {
+            DWObject.IfShowFileDialog = true; // Open the system's file dialog to load image
+            DWObject.LoadImageEx("", EnumDWT_ImageType.IT_ALL, OnSuccess, OnFailure); // Load images in all supported formats (.bmp, .jpg, .tif, .png, .pdf). OnSuccess or OnFailure will be called after the operation
+            
+        }
+    }
+ 
+    function SaveWithFileDialog() {
+        if (DWObject) {
+            if (DWObject.HowManyImagesInBuffer > 0) {
+                
+                if (document.getElementById("imgTypejpeg").checked == true) {
+                    //If the current image is B&W
+                    //1 is B&W, 8 is Gray, 24 is RGB
+                    if (DWObject.GetImageBitDepth(DWObject.CurrentImageIndexInBuffer) == 1)
+                        //If so, convert the image to Gray
+                        DWObject.ConvertToGrayScale(DWObject.CurrentImageIndexInBuffer);
+                    //Save image in JPEG
+                    DWObject.SaveAsJPEG("DynamicWebTWAIN.jpg", DWObject.CurrentImageIndexInBuffer);
+                }
+                else if (document.getElementById("imgTypetiff").checked == true)
+                    DWObject.SaveAllAsMultiPageTIFF("DynamicWebTWAIN.tiff", OnSuccess, OnFailure);
+                else if (document.getElementById("imgTypepdf").checked == true)
+                    DWObject.SaveAllAsPDF("DynamicWebTWAIN.pdf", OnSuccess, OnFailure);
+            }
+        }
+    }
+
+    function SaveWithoutFileDialog() {
+        
+        if (DWObject) {
+            if (DWObject.HowManyImagesInBuffer > 0) {
+                DWObject.IfShowFileDialog = false;
+                if (document.getElementById("imgTypejpeg").checked == true) {
+                    //If the current image is B&W
+                    //1 is B&W, 8 is Gray, 24 is RGB
+                    if (DWObject.GetImageBitDepth(DWObject.CurrentImageIndexInBuffer) == 1)
+                        //If so, convert the image to Gray
+                        DWObject.ConvertToGrayScale(DWObject.CurrentImageIndexInBuffer);
+                    //Save image in JPEG
+                    DWObject.SaveAsJPEG("C:\\Users\\SHEIKH\\Desktop\\Etse_scandata\\DynamicWebTWAIN.jpg", DWObject.CurrentImageIndexInBuffer);
+                }
+                else if (document.getElementById("imgTypetiff").checked == true)
+                    DWObject.SaveAllAsMultiPageTIFF("C:\\Users\\SHEIKH\\Desktop\\Etse_scandata\\DynamicWebTWAIN.tiff", OnSuccess, OnFailure);
+                else if (document.getElementById("imgTypepdf").checked == true)
+                    DWObject.SaveAllAsPDF("C:\\Users\\SHEIKH\\Desktop\\Etse_scandata\\DynamicWebTWAIN.pdf", OnSuccess, OnFailure);
+            }
+        }
+    }
+
+    </script>
+
+
+
+@RenderSection("scripts", required: false)
+</body>
+</html>

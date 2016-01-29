@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DMSModelStoreContainer" CdmEntityContainer="DMSEntities">
+    <EntitySetMapping Name="CTGRY_TBL">
+      <EntityTypeMapping TypeName="DMSModel.CTGRY_TBL">
+        <MappingFragment StoreEntitySet="CTGRY_TBL">
+          <ScalarProperty Name="CtgryId" ColumnName="CtgryId" />
+          <ScalarProperty Name="CtgryName" ColumnName="CtgryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCMNT_TBL">
+      <EntityTypeMapping TypeName="DMSModel.DCMNT_TBL">
+        <MappingFragment StoreEntitySet="DCMNT_TBL">
+          <ScalarProperty Name="DCMT_ID" ColumnName="DCMT_ID" />
+          <ScalarProperty Name="PLCY_NUM" ColumnName="PLCY_NUM" />
+          <ScalarProperty Name="SCAN_DTE" ColumnName="SCAN_DTE" />
+          <ScalarProperty Name="FILE_NME" ColumnName="FILE_NME" />
+          <ScalarProperty Name="EXTN" ColumnName="EXTN" />
+          <ScalarProperty Name="FRST_NME" ColumnName="FRST_NME" />
+          <ScalarProperty Name="LAST_NME" ColumnName="LAST_NME" />
+          <ScalarProperty Name="STRG_LOC" ColumnName="STRG_LOC" />
+          <ScalarProperty Name="DCMT_NTE" ColumnName="DCMT_NTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLE_TBL">
+      <EntityTypeMapping TypeName="DMSModel.ROLE_TBL">
+        <MappingFragment StoreEntitySet="ROLE_TBL">
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="ROLE_NME" ColumnName="ROLE_NME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_TBL">
+      <EntityTypeMapping TypeName="DMSModel.USER_TBL">
+        <MappingFragment StoreEntitySet="USER_TBL">
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+          <ScalarProperty Name="LAST_NME" ColumnName="LAST_NME" />
+          <ScalarProperty Name="FRST_NME" ColumnName="FRST_NME" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
