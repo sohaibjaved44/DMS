@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\SHEIKH\Documents\Visual Studio 2013\Projects\DMS\DMS\Models\DMSDbModel.edmx'. 
+﻿// T4 code generation is enabled for model 'G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\Models\DMSDbModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -53,7 +53,7 @@
           <Key>
             <PropertyRef Name="EXTN_ID" />
           </Key>
-          <Property Name="EXTN_ID" Type="int" Nullable="false" />
+          <Property Name="EXTN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EXTN_NAME" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PLAN_TBL">
