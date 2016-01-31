@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DMS.Models.EXTN_TBL>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EXTN_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXTN_NAME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXTN_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXTN_NAME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EXTN_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EXTN_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EXTN_ID })
+        </td>
+    </tr>
+}
+
+</table>

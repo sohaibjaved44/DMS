@@ -1,0 +1,28 @@
+﻿@model DMS.Models.EXTN_TBL
+
+<div>
+    <h4>EXTN_TBL</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTN_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTN_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTN_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXTN_NAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

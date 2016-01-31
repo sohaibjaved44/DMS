@@ -442,10 +442,14 @@
     <Content Include="Views\ProductType\Create.cshtml" />
     <Content Include="Views\ProductType\Edit.cshtml" />
     <Content Include="Views\ProductType\Delete.cshtml" />
+    <Content Include="Views\Extension\Index.cshtml" />
+    <Content Include="Views\Extension\Details.cshtml" />
+    <Content Include="Views\Extension\Create.cshtml" />
+    <Content Include="Views\Extension\Edit.cshtml" />
+    <Content Include="Views\Extension\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Extension\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
