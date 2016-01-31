@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-
 namespace DMS.Models
 {
     using System;
@@ -16,11 +14,8 @@ namespace DMS.Models
     
     public partial class PRDCT_TYPE
     {
-        [DisplayName("Product Type Id")]
         public int Product_type_id { get; set; }
-        [DisplayName("Product Name")]
         public string Product_name { get; set; }
-        [DisplayName("Plan Id")]
         public Nullable<int> Plan_id { get; set; }
     
         public virtual PLAN_TBL PLAN_TBL { get; set; }

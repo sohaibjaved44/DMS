@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-
 namespace DMS.Models
 {
     using System;
@@ -22,9 +20,7 @@ namespace DMS.Models
             this.PRDCT_TYPE = new HashSet<PRDCT_TYPE>();
         }
     
-        [DisplayName("Plan Id")]
         public int Plan_id { get; set; }
-        [DisplayName("Plan Name")]
         public string Plan_Name { get; set; }
         public Nullable<int> product_type { get; set; }
     
