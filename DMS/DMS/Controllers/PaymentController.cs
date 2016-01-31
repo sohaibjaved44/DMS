@@ -68,6 +68,7 @@ namespace DMS.Controllers
         {
             try
             {
+                paymentModel.Pymt_id = id;
                 using (DMSDbEntities db = new DMSDbEntities())
                 {
                     var entry = db.Entry<PYMT_TBL>(paymentModel);
