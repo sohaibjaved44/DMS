@@ -68,6 +68,7 @@ namespace DMS.Controllers
         {
             try
             {
+                policyModel.Plcy_id = id;
                 using (DMSDbEntities db = new DMSDbEntities())
                 {
                     var entry = db.Entry<PLCY_TBL>(policyModel);
