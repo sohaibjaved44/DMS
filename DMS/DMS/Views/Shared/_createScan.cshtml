@@ -1,12 +1,10 @@
 ﻿@using DMS.Models
 @model DMS.Models.DCMNT_TBL
 <br/>
-<br/>
 
 @using (Html.BeginForm("CreateScan", "Document", FormMethod.Post))
 {
-    <div class="form-horizontal">
-    <hr/>
+    <div class="form-horizontal">    
     @Html.ValidationSummary(true, "", new {@class = "text-danger"})
     <div class="form-group" style="display: none">
         @Html.LabelFor(model => model.DCMT_ID, htmlAttributes: new {@class = "control-label col-md-4"})
@@ -202,8 +200,6 @@
         </div>
     }
 
-
-
     <div class="form-group">
         @Html.Label("Document Note", htmlAttributes: new {@class = "control-label col-md-4"})
         <div class="col-md-8">
@@ -211,10 +207,11 @@
             @Html.ValidationMessageFor(model => model.DCMT_NTE, "", new {@class = "text-danger"})
         </div>
     </div>
+    @Html.HiddenFor(p=>p.STRG_LOC);
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default"/>
+        <div class="col-md-offset-8 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success"/>
         </div>
     </div>
 

@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Document Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Document Management System", "DocumentScan", "Document", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 
@@ -55,7 +55,7 @@
 <script>
     $(document).ready(function() {
         $("#table_id").DataTable({responsive: true});
-        
+
     });
 
     //var DWObject;
@@ -74,20 +74,24 @@
     //}
 
 
-    
+
     var DWObject;
     function Dynamsoft_OnReady() {
         DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
         if (DWObject) {
             DWObject.RegisterEvent('OnPostAllTransfers', SaveWithoutFileDialog);
+            DWObject.RegisterEvent('OnMouseClick', function (sImageIndex) {
+
+                window.imgIndex = sImageIndex;
+            });
         }
-        DWObject.SetViewMode(2, 2);
+        DWObject.SetViewMode(1,1);
     }
     function AcquireImage() {
         if (DWObject) {
             DWObject.SelectSource();
-            DWObject.OpenSource();            
-            DWObject.IfDisableSourceAfterAcquire = true;	// Scanner source will be disabled/closed automatically after the scan.            
+            DWObject.OpenSource();
+            DWObject.IfDisableSourceAfterAcquire = true;	// Scanner source will be disabled/closed automatically after the scan.
             DWObject.AcquireImage();
         }
     }
@@ -99,17 +103,19 @@
         alert(errorString);
     }
     function LoadImage() {
+        
+
         if (DWObject) {
             DWObject.IfShowFileDialog = true; // Open the system's file dialog to load image
             DWObject.LoadImageEx("", EnumDWT_ImageType.IT_ALL, OnSuccess, OnFailure); // Load images in all supported formats (.bmp, .jpg, .tif, .png, .pdf). OnSuccess or OnFailure will be called after the operation
             
         }
     }
- 
+
     function SaveWithFileDialog() {
         if (DWObject) {
             if (DWObject.HowManyImagesInBuffer > 0) {
-                
+
                 if (document.getElementById("imgTypejpeg").checked == true) {
                     //If the current image is B&W
                     //1 is B&W, 8 is Gray, 24 is RGB
@@ -129,6 +135,7 @@
 
     function SaveWithoutFileDialog() {
         
+        var path = '@Session["STRG_LOC"]' + '\\' + guid();        
         if (DWObject) {
             if (DWObject.HowManyImagesInBuffer > 0) {
                 DWObject.IfShowFileDialog = false;
@@ -139,15 +146,28 @@
                         //If so, convert the image to Gray
                         DWObject.ConvertToGrayScale(DWObject.CurrentImageIndexInBuffer);
                     //Save image in JPEG
-                    DWObject.SaveAsJPEG("C:\\Users\\SHEIKH\\Desktop\\Etse_scandata\\DynamicWebTWAIN.jpg", DWObject.CurrentImageIndexInBuffer);
+                    DWObject.SaveAsJPEG(path + ".jpg", DWObject.CurrentImageIndexInBuffer);
                 }
                 else if (document.getElementById("imgTypetiff").checked == true)
-                    DWObject.SaveAllAsMultiPageTIFF("C:\\Users\\SHEIKH\\Desktop\\Etse_scandata\\DynamicWebTWAIN.tiff", OnSuccess, OnFailure);
+                    DWObject.SaveAllAsMultiPageTIFF(path + ".tiff", OnSuccess, OnFailure);
                 else if (document.getElementById("imgTypepdf").checked == true)
-                    DWObject.SaveAllAsPDF("C:\\Users\\SHEIKH\\Desktop\\Etse_scandata\\DynamicWebTWAIN.pdf", OnSuccess, OnFailure);
+                    DWObject.SaveAllAsPDF(+ ".pdf", OnSuccess, OnFailure);
             }
+            $("#STRG_LOC").val(path);
         }
     }
+
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+
 
     </script>
 

@@ -11,7 +11,7 @@ var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 
 Dynamsoft.WebTwainEnv.AutoLoad = true;
 ///
-Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:370, Height:550}];
+Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:350, Height:450}];
 ///
 Dynamsoft.WebTwainEnv.ProductKey = '******';
 ///

@@ -121,7 +121,10 @@ namespace DMS.Controllers
 
         public ActionResult DocumentScan()
         {
-            
+            using (DMSDbEntities db = new DMSDbEntities())
+            {
+                Session["STRG_LOC"] = db.STRG_LOC_TBL.FirstOrDefault().STRG_LOC;
+            }
             return View();
         }
 

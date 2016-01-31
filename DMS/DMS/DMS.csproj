@@ -305,6 +305,7 @@
     <Content Include="Resources\reference\imgs\zoomout_grey.png" />
     <Content Include="Resources\reference\loading.gif" />
     <Content Include="Resources\reference\logo.gif" />
+    <Content Include="Resources\reference\scanLogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\DMSDbModel.edmx">
