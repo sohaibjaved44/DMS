@@ -35,7 +35,7 @@ namespace DMS.Models
         public virtual DbSet<PLAN_TBL> PLAN_TBL { get; set; }
         public virtual DbSet<PLCY_TBL> PLCY_TBL { get; set; }
         public virtual DbSet<PRDCT_TYPE> PRDCT_TYPE { get; set; }
-        public virtual DbSet<DCMT_TYPE> DCMT_TYPE { get; set; }
         public virtual DbSet<EXTN_TBL> EXTN_TBL { get; set; }
+        public virtual DbSet<DCMT_TYPE> DCMT_TYPE { get; set; }
     }
 }

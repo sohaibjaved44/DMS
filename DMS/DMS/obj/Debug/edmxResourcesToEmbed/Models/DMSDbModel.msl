@@ -109,19 +109,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DCMT_TYPE">
-      <EntityTypeMapping TypeName="DMSModel.DCMT_TYPE">
-        <MappingFragment StoreEntitySet="DCMT_TYPE">
-          <ScalarProperty Name="Dcmt_type1" ColumnName="Dcmt_type" />
-          <ScalarProperty Name="Dcmt_id" ColumnName="Dcmt_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EXTN_TBL">
       <EntityTypeMapping TypeName="DMSModel.EXTN_TBL">
         <MappingFragment StoreEntitySet="EXTN_TBL">
           <ScalarProperty Name="EXTN_NAME" ColumnName="EXTN_NAME" />
           <ScalarProperty Name="EXTN_ID" ColumnName="EXTN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCMT_TYPE">
+      <EntityTypeMapping TypeName="DMSModel.DCMT_TYPE">
+        <MappingFragment StoreEntitySet="DCMT_TYPE">
+          <ScalarProperty Name="Dcmt_type1" ColumnName="Dcmt_type" />
+          <ScalarProperty Name="Dcmt_id" ColumnName="Dcmt_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -34,7 +34,7 @@
     <Key>
       <PropertyRef Name="Dcmt_id" />
     </Key>
-    <Property Name="Dcmt_id" Type="int" Nullable="false" />
+    <Property Name="Dcmt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Dcmt_type" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="DEPT_TBL">
@@ -55,7 +55,7 @@
     <Key>
       <PropertyRef Name="Plan_id" />
     </Key>
-    <Property Name="Plan_id" Type="int" Nullable="false" />
+    <Property Name="Plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Plan_Name" Type="nvarchar" MaxLength="50" />
     <Property Name="product_type" Type="int" />
   </EntityType>
@@ -70,7 +70,7 @@
     <Key>
       <PropertyRef Name="Product_type_id" />
     </Key>
-    <Property Name="Product_type_id" Type="int" Nullable="false" />
+    <Property Name="Product_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Product_name" Type="nvarchar" MaxLength="50" />
     <Property Name="Plan_id" Type="int" />
   </EntityType>

@@ -39,7 +39,7 @@
           <Key>
             <PropertyRef Name="Dcmt_id" />
           </Key>
-          <Property Name="Dcmt_id" Type="int" Nullable="false" />
+          <Property Name="Dcmt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Dcmt_type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DEPT_TBL">
@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="Plan_id" />
           </Key>
-          <Property Name="Plan_id" Type="int" Nullable="false" />
+          <Property Name="Plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Plan_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="product_type" Type="int" />
         </EntityType>
@@ -75,7 +75,7 @@
           <Key>
             <PropertyRef Name="Product_type_id" />
           </Key>
-          <Property Name="Product_type_id" Type="int" Nullable="false" />
+          <Property Name="Product_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_name" Type="nvarchar" MaxLength="50" />
           <Property Name="Plan_id" Type="int" />
         </EntityType>
@@ -302,8 +302,8 @@
             <End Role="PLAN_TBL" EntitySet="PLAN_TBL" />
             <End Role="PRDCT_TYPE" EntitySet="PRDCT_TYPE" />
           </AssociationSet>
-          <EntitySet Name="DCMT_TYPE" EntityType="DMSModel.DCMT_TYPE" />
           <EntitySet Name="EXTN_TBL" EntityType="DMSModel.EXTN_TBL" />
+          <EntitySet Name="DCMT_TYPE" EntityType="DMSModel.DCMT_TYPE" />
         </EntityContainer>
         <EntityType Name="STRG_LOC_TBL">
           <Key>
@@ -349,19 +349,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DCMT_TYPE">
-          <Key>
-            <PropertyRef Name="Dcmt_id" />
-          </Key>
-          <Property Name="Dcmt_id" Type="Int32" Nullable="false" />
-          <Property Name="Dcmt_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="EXTN_TBL">
           <Key>
             <PropertyRef Name="EXTN_ID" />
           </Key>
           <Property Name="EXTN_ID" Type="Int32" Nullable="false" />
           <Property Name="EXTN_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DCMT_TYPE">
+          <Key>
+            <PropertyRef Name="Dcmt_id" />
+          </Key>
+          <Property Name="Dcmt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dcmt_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -477,19 +477,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DCMT_TYPE">
-            <EntityTypeMapping TypeName="DMSModel.DCMT_TYPE">
-              <MappingFragment StoreEntitySet="DCMT_TYPE">
-                <ScalarProperty Name="Dcmt_type1" ColumnName="Dcmt_type" />
-                <ScalarProperty Name="Dcmt_id" ColumnName="Dcmt_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EXTN_TBL">
             <EntityTypeMapping TypeName="DMSModel.EXTN_TBL">
               <MappingFragment StoreEntitySet="EXTN_TBL">
                 <ScalarProperty Name="EXTN_NAME" ColumnName="EXTN_NAME" />
                 <ScalarProperty Name="EXTN_ID" ColumnName="EXTN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DCMT_TYPE">
+            <EntityTypeMapping TypeName="DMSModel.DCMT_TYPE">
+              <MappingFragment StoreEntitySet="DCMT_TYPE">
+                <ScalarProperty Name="Dcmt_type1" ColumnName="Dcmt_type" />
+                <ScalarProperty Name="Dcmt_id" ColumnName="Dcmt_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -119,8 +119,8 @@
       <End Role="PLAN_TBL" EntitySet="PLAN_TBL" />
       <End Role="PRDCT_TYPE" EntitySet="PRDCT_TYPE" />
     </AssociationSet>
-    <EntitySet Name="DCMT_TYPE" EntityType="DMSModel.DCMT_TYPE" />
     <EntitySet Name="EXTN_TBL" EntityType="DMSModel.EXTN_TBL" />
+    <EntitySet Name="DCMT_TYPE" EntityType="DMSModel.DCMT_TYPE" />
   </EntityContainer>
   <EntityType Name="STRG_LOC_TBL">
     <Key>
@@ -166,18 +166,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="DCMT_TYPE">
-    <Key>
-      <PropertyRef Name="Dcmt_id" />
-    </Key>
-    <Property Name="Dcmt_id" Type="Int32" Nullable="false" />
-    <Property Name="Dcmt_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="EXTN_TBL">
     <Key>
       <PropertyRef Name="EXTN_ID" />
     </Key>
     <Property Name="EXTN_ID" Type="Int32" Nullable="false" />
     <Property Name="EXTN_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DCMT_TYPE">
+    <Key>
+      <PropertyRef Name="Dcmt_id" />
+    </Key>
+    <Property Name="Dcmt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dcmt_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
