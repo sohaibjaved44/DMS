@@ -1,17 +1,18 @@
-﻿@model DMS.Models.PRDCT_TYPE
+﻿@using DMS.Models
+@model DMS.Models.PRDCT_TYPE
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PRDCT_TYPE</h4>
+        <h4>Product Type</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Product_type_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Product_type_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Product_type_id, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.Product_type_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -24,13 +25,35 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Plan_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Plan_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Plan_id, "", new { @class = "text-danger" })
+        @using (DMSDbEntities db = new DMSDbEntities())
+        {
+            var plans = db.PLAN_TBL.ToList();
+
+            List<SelectListItem> sl = new List<SelectListItem>();
+            SelectList slc;
+            foreach (var item in plans)
+            {
+                if (item.Plan_id != null)
+                {
+                    SelectListItem sli = new SelectListItem();
+                    sli.Text = item.Plan_Name;
+                    sli.Value = item.Plan_id.ToString();
+                    sli.Selected = false;
+                    sl.Add(sli);
+                }
+            }
+            slc = new SelectList(sl, "Value", "Text");
+            //these are the names of the column in the db table with which the dropdown is going to be binded.
+            ViewBag.plan = slc;
+
+            <div class="form-group">
+                @Html.Label("Plan", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Plan_id, (SelectList)ViewBag.plan, "Please Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Plan_id, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

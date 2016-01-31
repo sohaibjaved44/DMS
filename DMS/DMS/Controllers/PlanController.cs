@@ -68,6 +68,7 @@ namespace DMS.Controllers
         {
             try
             {
+                planModel.Plan_id = id;
                 using (DMSDbEntities db = new DMSDbEntities())
                 {
                     var entry = db.Entry<PLAN_TBL>(planModel);

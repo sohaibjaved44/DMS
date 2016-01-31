@@ -68,6 +68,7 @@ namespace DMS.Controllers
         {
             try
             {
+                prdctTypeModel.Product_type_id = id;
                 using (DMSDbEntities db = new DMSDbEntities())
                 {
                     var entry = db.Entry<PRDCT_TYPE>(prdctTypeModel);
