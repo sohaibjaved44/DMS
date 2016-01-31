@@ -11,13 +11,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>USER_TBL</h4>
+        <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.Label("User Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.USER_ID, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.EditorFor(model => model.USER_ID, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.USER_ID, "", new { @class = "text-danger" })
             </div>
         </div>
