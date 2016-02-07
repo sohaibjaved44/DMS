@@ -2,10 +2,10 @@
 @model DMS.Models.DCMNT_TBL
 <br/>
 
-@using (Html.BeginForm("CreateScan", "Document", FormMethod.Post))
+@using (Html.BeginForm("CreateScan", "Document", FormMethod.Post,new {@onsubmit = "return verify();"}))
 {
     <div class="form-horizontal">    
-    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    @Html.ValidationSummary(true)
     <div class="form-group" style="display: none">
         @Html.LabelFor(model => model.DCMT_ID, htmlAttributes: new {@class = "control-label col-md-4"})
         <div class="col-md-8">
@@ -78,8 +78,8 @@
     <div class="form-group">
         @Html.Label("Policy/Description#", htmlAttributes: new {@class = "control-label col-md-4"})
         <div class="col-md-8">
-            @Html.EditorFor(model => model.PLCY_ID, new {htmlAttributes = new {@class = "form-control"}})
-            @Html.ValidationMessageFor(model => model.PLCY_ID, "", new {@class = "text-danger"})
+            @Html.EditorFor(model => model.PLCY_NUM, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.PLCY_NUM, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -112,20 +112,20 @@
             {
                 SelectListItem sli = new SelectListItem();
                 sli.Text = item.Dpt_Name;
-                sli.Value = item.Dpt_Name.ToString();
+                sli.Value = item.Dpt_id.ToString();
                 sli.Selected = false;
                 sl.Add(sli);
             }
         }
         slc = new SelectList(sl, "Value", "Text");
         //these are the names of the column in the db table with which the dropdown is going to be binded.
-        ViewBag.policies = slc;
+        ViewBag.departments = slc;
 
         <div class="form-group">
-            @Html.Label("Department", htmlAttributes: new {@class = "control-label col-md-4"})
+            @Html.Label("Department", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.DropDownListFor(model => model.DEPT_ID, (SelectList) ViewBag.policies, "Please Select", new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.DEPT_ID, "", new {@class = "text-danger"})
+                @Html.DropDownListFor(model => model.DEPT_ID, (SelectList)ViewBag.departments, "Please Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DEPT_ID, "", new { @class = "text-danger" })
             </div>
         </div>
     }
@@ -170,7 +170,7 @@
     }
 
 
-    @using (DMSDbEntities db = new DMSDbEntities())
+    @*@using (DMSDbEntities db = new DMSDbEntities())
     {
         var extensions = db.EXTN_TBL.ToList();
 
@@ -198,7 +198,7 @@
                 @Html.ValidationMessageFor(model => model.EXTN_ID, "", new {@class = "text-danger"})
             </div>
         </div>
-    }
+    }*@
 
     <div class="form-group">
         @Html.Label("Document Note", htmlAttributes: new {@class = "control-label col-md-4"})
@@ -207,15 +207,13 @@
             @Html.ValidationMessageFor(model => model.DCMT_NTE, "", new {@class = "text-danger"})
         </div>
     </div>
-    @Html.HiddenFor(p=>p.STRG_LOC);
+    @Html.HiddenFor(p=>p.STRG_LOC)
 
     <div class="form-group">
         <div class="col-md-offset-8 col-md-10">
-            <input type="submit" value="Save" class="btn btn-success"/>
+            <input type="submit" value="Save" onclick="setPath();" class="btn btn-success"/>
         </div>
     </div>
-
-
     </div>
 }
 
@@ -223,4 +221,17 @@
     $(document).ready(function() {
         $("#date").Date();
     });
+
+    function setPath() {
+        
+        $("#STRG_LOC").val(sessionStorage.getItem("path"));
+    }
+    function verify() {
+        
+        if (sessionStorage.getItem("path") == "") {
+            alert("Please Click Save to store the scanned document/s first!");
+            return false;
+        }
+        return true;
+    }
 </script>

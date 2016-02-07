@@ -79,9 +79,11 @@ namespace DMS.Controllers
                     select user;
                 if (result != null)
                 {
-                    Session["useremail"] = model.Email;
+                    Session["useremail"] = result.FirstOrDefault().USER_EMAIL;
+                    Session["userid"] = result.FirstOrDefault().USER_ID;
                     Session["role"] = db.ROLE_TBL.FirstOrDefault(p => p.ROLE_ID == result.FirstOrDefault().ROLE_ID).ROLE_NME;
                     Session["fname"] = result.FirstOrDefault().FRST_NME;
+                    Session["lname"] = result.FirstOrDefault().LAST_NME;
                     return RedirectToAction("../document/documentscan");
                 }
             }

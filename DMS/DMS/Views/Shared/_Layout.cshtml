@@ -74,12 +74,12 @@
     //}
 
 
-
+    window.path = "";
     var DWObject;
     function Dynamsoft_OnReady() {
         DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
         if (DWObject) {
-            DWObject.RegisterEvent('OnPostAllTransfers', SaveWithoutFileDialog);
+            //DWObject.RegisterEvent('OnPostAllTransfers', SaveWithoutFileDialog);
             DWObject.RegisterEvent('OnMouseClick', function (sImageIndex) {
 
                 window.imgIndex = sImageIndex;
@@ -88,6 +88,7 @@
         DWObject.SetViewMode(1,1);
     }
     function AcquireImage() {
+        sessionStorage.setItem("path", "");
         if (DWObject) {
             DWObject.SelectSource();
             DWObject.OpenSource();
@@ -135,7 +136,9 @@
 
     function SaveWithoutFileDialog() {
         
-        var path = '@Session["STRG_LOC"]' + '\\' + guid();        
+        var path = '@Session["STRG_LOC"]' + '\\' + guid();
+        var ext = "";
+        //alert(path);
         if (DWObject) {
             if (DWObject.HowManyImagesInBuffer > 0) {
                 DWObject.IfShowFileDialog = false;
@@ -146,14 +149,20 @@
                         //If so, convert the image to Gray
                         DWObject.ConvertToGrayScale(DWObject.CurrentImageIndexInBuffer);
                     //Save image in JPEG
-                    DWObject.SaveAsJPEG(path + ".jpg", DWObject.CurrentImageIndexInBuffer);
+                    ext = ".jpg";
+                    DWObject.SaveAsJPEG(path + ext, DWObject.CurrentImageIndexInBuffer);
                 }
-                else if (document.getElementById("imgTypetiff").checked == true)
-                    DWObject.SaveAllAsMultiPageTIFF(path + ".tiff", OnSuccess, OnFailure);
-                else if (document.getElementById("imgTypepdf").checked == true)
+                else if (document.getElementById("imgTypetiff").checked == true) {
+                    ext = ".tiff";
+                    DWObject.SaveAllAsMultiPageTIFF(path + ext, OnSuccess, OnFailure);
+                }
+                else if (document.getElementById("imgTypepdf").checked == true) {
+                    ext = ".pdf";
                     DWObject.SaveAllAsPDF(+ ".pdf", OnSuccess, OnFailure);
+                }
             }
-            $("#STRG_LOC").val(path);
+            sessionStorage.setItem("path", path+ext);
+            //alert(path);
         }
     }
 

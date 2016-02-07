@@ -121,30 +121,47 @@ namespace DMS.Controllers
 
         public ActionResult DocumentScan()
         {
+            if (Session["userid"] == null){return RedirectToAction("Login", "Account");}
             using (DMSDbEntities db = new DMSDbEntities())
             {
                 Session["STRG_LOC"] = db.STRG_LOC_TBL.FirstOrDefault().STRG_LOC;
             }
-            return View();
+            return View(new DCMNT_TBL(){FRST_NME = Session["fname"].ToString(),LAST_NME = Session["lname"].ToString()});
         }
 
         [HttpPost]
         public ActionResult CreateScan(FormCollection fc, DCMNT_TBL dcmntTblModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                using (DMSDbEntities db = new DMSDbEntities())
+                string path = dcmntTblModel.STRG_LOC.Replace(@"\", "_");
+                string[] parts = path.Split('_');
+                string[] name = parts[parts.Length - 1].Split('.');
+                try
                 {
-                    db.DCMNT_TBL.Add(dcmntTblModel );
-                    db.SaveChanges();                    
-                    ViewBag.Message = "Saved successfully";
-                    return RedirectToAction("DocumentScan");
+                    using (DMSDbEntities db = new DMSDbEntities())
+                    {
+                        dcmntTblModel.FILE_NME = name[0] + "." + name[1];
+                        dcmntTblModel.USER_ID = Convert.ToInt32(Session["userid"]);
+                        dcmntTblModel.SCAN_DTE = DateTime.Now.Date.ToString().Split(' ')[0];
+                        dcmntTblModel.SCAN_TME = DateTime.Now.TimeOfDay.ToString().Split('.')[0];
+                        db.DCMNT_TBL.Add(dcmntTblModel);
+                        db.SaveChanges();
+                        ViewBag.Message = "Saved successfully";
+                        return RedirectToAction("DocumentScan");
+                    }
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Values not entered properly");
+                    return View("DocumentScan", dcmntTblModel);
                 }
             }
-            catch
+            else
             {
-                return View();
-            }            
+                ModelState.AddModelError("","Values not entered properly");
+                return View("DocumentScan", dcmntTblModel);
+            }
         }
     }
 }

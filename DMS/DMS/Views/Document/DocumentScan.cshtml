@@ -2,8 +2,7 @@
 @{
     ViewBag.Title = "Document Scan";
 }
-@using (Html.BeginForm())
-{
+
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
@@ -15,9 +14,7 @@
                         <div class="col-md-2"><input class="btn btn-default" type="button" value="Flip" onclick="Flip();" /></div>
                         <div class="col-md-1"></div>
                         <div class="col-md-2"><input class="btn btn-default" type="button" value="Rotate" onclick="Rotate();" /></div>
-                        <div class="col-md-1"></div>                        
-                        
-                        
+                        <div class="col-md-1"></div>                                                                        
                     </div>
                     <div id="dwtcontrolContainer"> </div>
                     <div class="row">
@@ -25,14 +22,15 @@
                             <label><input type="radio" value="jpg" name="ImageType" id="imgTypejpeg"/>JPEG</label>
                         </div>
                         <div class="col-md-2">
-                            <label><input type="radio" value="tif" name="ImageType" id="imgTypetiff"/>TIFF</label>
+                            <label><input type="radio" value="tif" name="ImageType" checked="checked" id="imgTypetiff" />TIFF</label>
                         </div>
                         <div class="col-md-2">
-                            <label><input type="radio" value="pdf" name="ImageType" id="imgTypepdf" checked="checked"/>PDF</label>
+                            <label><input type="radio" value="pdf" name="ImageType" id="imgTypepdf" />PDF</label>
                         </div>
 
                         <input class="btn btn-default col-md-3" type="button" value="Scan" onclick="AcquireImage();"/>
                         <input class="btn btn-default col-md-3" type="button" value="Load" onclick="LoadImage();"/>
+                        <input class="btn btn-default col-md-3" type="button" value="Save" onclick="SaveWithoutFileDialog();" />
 
                     </div>
                 </div>
@@ -44,20 +42,21 @@
             </div>
         </div>
         <div class="col-md-1">
-            
+            <div class="row">
+                <a href="/Document/Index" class="col-md-9 btn btn-default" onclick="search();">Search</a>
+            </div>
+
         </div>
-    </div>
-    
-}
+    </div>    
 
 <script type="text/javascript">
     function Mirror() {
         DWObject.Mirror(window.imgIndex);
     }
     function Flip() {
-        alert("called");
+        //alert("called");
         DWObject.Flip(window.imgIndex);
-        alert("done");
+        //alert("done");
     }
     function Rotate() {
         DWObject.Rotate(window.imgIndex, 90, true);

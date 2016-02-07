@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.ModelConfiguration.Conventions;
+
 namespace DMS.Models
 {
     using System;
@@ -14,11 +17,19 @@ namespace DMS.Models
     
     public partial class DCMNT_TBL
     {
+        public DCMNT_TBL()
+        {
+            DEPT_ID = 0;
+        }
         public long DCMT_ID { get; set; }
+        [Required(ErrorMessage = "Policy Number is Required")]
+
         public string PLCY_NUM { get; set; }
         public string SCAN_DTE { get; set; }
         public string FILE_NME { get; set; }
+        [Required(ErrorMessage = "First Name is Required")]
         public string FRST_NME { get; set; }
+        [Required(ErrorMessage = "Last Name is Required")]
         public string LAST_NME { get; set; }
         public string STRG_LOC { get; set; }
         public string DCMT_NTE { get; set; }
@@ -28,9 +39,14 @@ namespace DMS.Models
         public Nullable<int> USER_ID { get; set; }
         public Nullable<int> DCMT_TYPE_ID { get; set; }
         public Nullable<int> PLCY_ID { get; set; }
+        [Required(ErrorMessage = "Plan is not selected")]
+
         public Nullable<int> PLAN_ID { get; set; }
+        [Required(ErrorMessage = "Product Type is not selected")]
         public Nullable<int> PRDCT_TYPE_ID { get; set; }
+
         public Nullable<int> EXTN_ID { get; set; }
+        [Required(ErrorMessage = "Department is not selected")]
         public Nullable<int> DEPT_ID { get; set; }
     }
 }
