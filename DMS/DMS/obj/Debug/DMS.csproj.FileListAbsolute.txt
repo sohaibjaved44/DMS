@@ -55,8 +55,6 @@ C:\Users\SHEIKH\Documents\Visual Studio 2013\Projects\DMS\DMS\bin\Microsoft.Owin
 C:\Users\SHEIKH\Documents\Visual Studio 2013\Projects\DMS\DMS\obj\Debug\DMS.dll
 C:\Users\SHEIKH\Documents\Visual Studio 2013\Projects\DMS\DMS\obj\Debug\DMS.pdb
 C:\Users\SHEIKH\Documents\Visual Studio 2013\Projects\DMS\DMS\obj\Debug\DMS.csprojResolveAssemblyReference.cache
-G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\obj\Debug\DMS.csprojResolveAssemblyReference.cache
-G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\obj\Debug\DMS.dll
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\DMS.dll.config
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\DMS.dll
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\DMS.pdb
@@ -111,4 +109,6 @@ G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\Microsoft.Owin.Security.OAut
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\Microsoft.Owin.Security.Google.xml
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\Microsoft.Owin.Security.Twitter.xml
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\obj\Debug\DMS.dll
 G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\obj\Debug\DMS.pdb
+G:\freelancing\Upwork\Etse\DMS 29012016\DMS\DMS\obj\Debug\DMS.csprojResolveAssemblyReference.cache
